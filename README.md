@@ -1,4 +1,4 @@
-# Dijkstra's algorithm implementation
+# Dijkstra's algorithm
 
 In this repo I implement a simple Dijkstra's algorithm.
 to test, in the repo is also present a data file representing a graph of walkable streets.

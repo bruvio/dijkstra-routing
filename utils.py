@@ -75,15 +75,15 @@ class Graph:
 
         while vertices:
             current_vertex = min(vertices, key=lambda vertex: distances[vertex])
+            logger.debug("current vertex is {}".format(current_vertex))
             vertices.remove(current_vertex)
-            if distances[current_vertex] == inf:
+            if (distances[current_vertex] == inf) or (current_vertex == dest):
                 break
             for neighbour, cost in self.neighbours[current_vertex]:
                 alternative_route = distances[current_vertex] + cost
                 if alternative_route < distances[neighbour]:
                     distances[neighbour] = alternative_route
                     previous_vertices[neighbour] = current_vertex
-                    logger.debug("updating Graph distances", format(distances))
 
         path, current_vertex = deque(), dest
         while previous_vertices[current_vertex] is not None:

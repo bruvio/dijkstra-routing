@@ -79,7 +79,7 @@ if __name__ == "__main__":
         "--debug",
         type=int,
         help="Debug level. 0: Error, 1: Warning, 2: Info, 3: Debug, 4: Debug Plus",
-        default=2,
+        default=3,
     )
     args = parser.parse_args(sys.argv[1:])
 
