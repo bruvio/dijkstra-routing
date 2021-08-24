@@ -83,7 +83,7 @@ class Graph:
                 if alternative_route < distances[neighbour]:
                     distances[neighbour] = alternative_route
                     previous_vertices[neighbour] = current_vertex
-                    # print(distances)
+                    logger.debug("updating Graph distances", format(distances))
 
         path, current_vertex = deque(), dest
         while previous_vertices[current_vertex] is not None:
@@ -91,12 +91,10 @@ class Graph:
             current_vertex = previous_vertices[current_vertex]
         if path:
             path.appendleft(current_vertex)
-        logger.debug("path to destination is {}".format(path))
-        # distance_between_nodes = 0
-        # for index in range(1, len(path)):
-        #     for thing in self.edges:
-        #         if thing.start == path[index - 1] and thing.end == path[index]:
-        #             distance_between_nodes += thing.cost
-        # return distance_between_nodes
-        # return path, distances[dest]
+        logger.debug("path to destination is \n")
+
+        while path:
+            value = path.popleft()
+            logger.debug("{} \n".format(value))
+
         return distances[dest]
