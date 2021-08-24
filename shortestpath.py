@@ -5,7 +5,7 @@ import pdb
 import sys
 import time
 
-from utils import Graph
+from utils import Graph, MinHeap, dijkstrasAlgorithm, remap_nodes
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ def main(
         logger.debug("path exists")
         logger.info("creating Graph from {}".format(path))
         logger.debug("reading number of nodes in current Graph")
-
+        start = time.time()
         with open(path) as f:
             num_nodes = int(f.readline().rstrip())
             logger.debug("{} found".format(num_nodes))
@@ -41,19 +41,35 @@ def main(
                     int(line.split()[2]),
                 )
                 list_tuples.append(tuple([n1, n2, distance]))
+        # building graph
         graph = Graph(list_tuples)
+        # copying neighbours dictionary
+        neighbours = graph.neighbours
+        # creting list of vertices
+        vertices = list(graph.vertices)
+
+        # remapping list of vertices using hashtable
+
+        edges, hashmap = remap_nodes(vertices, neighbours)
+
+        start_node = hashmap[str(node1)]
+        dest_node = hashmap[str(node2)]
+        logger.debug("Elapsed Time to prepare the data: %s" % (time.time() - start))
         start = time.time()
+
+        min_distance = dijkstrasAlgorithm(start_node, dest_node, edges)
+
         logger.info(
             "computing shortest path between nodes {} and {}".format(node1, node2)
         )
-        distance = graph.dijkstra(node1, node2)
+        # distance = graph.dijkstra(node1, node2)
         logger.debug("Elapsed Time: %s" % (time.time() - start))
-
-        logger.info(
-            "distance between node {} and node {} is \n {}".format(
-                node1, node2, distance
+        if min_distance != -1:
+            logger.info(
+                "distance between node {} and node {} is \n {}".format(
+                    node1, node2, min_distance
+                )
             )
-        )
 
     else:
         logger.error("specified path does not exists")

@@ -127,5 +127,9 @@ where the last number is a debug code according to the following debug map:
 
 ## further developments
 
-code performances are bad when dealing with big graphs.
-In a next stage it would be good to use the minheap data structure to save time finding the minimal node to search on
+the utils file contains two classes to store the nodes.
+the Graph class also contains a dijkstra algorithm but code performances are bad when dealing with big graphs.
+
+To solve this issue I used this as a base to load the data and then extract the list of vertices and an adjacency list that I use in a second algorithm that uses a min Heap data structure to store the minimum distance.
+
+In a next stage it would be good refactor the code to improve performance and readability as the time to pre-process the data is quite high compared to run time of the algorithm.
