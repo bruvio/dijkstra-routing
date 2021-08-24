@@ -105,3 +105,7 @@ where the last number is a debug code according to the following debug map:
         4: 5,
     }
 ```
+## further developments
+
+code performances are bad when dealing with big graphs.
+In a next stage it would be good to use the minheap data structure to save time finding the minimal node to search on
