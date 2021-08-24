@@ -1,5 +1,7 @@
+import logging
 from collections import deque, namedtuple
 
+logger = logging.getLogger(__name__)
 # we'll use infinity as a default distance to nodes.
 inf = float("inf")
 Edge = namedtuple("Edge", "start, end, cost")
@@ -54,6 +56,16 @@ class Graph:
 
         return neighbours
 
+    # use the following if the graph is undirected
+    # @property
+    # def neighbours(self):
+    #     neighbours = {vertex: set() for vertex in self.vertices}
+    #     for edge in self.edges:
+    #         neighbours[edge.start].add((edge.end, edge.cost))
+    #         neighbours[edge.end].add((edge.start, edge.cost))
+
+    #     return neighbours
+
     def dijkstra(self, source, dest):
         assert source in self.vertices, "Such source node doesn't exist"
         distances = {vertex: inf for vertex in self.vertices}
@@ -79,29 +91,12 @@ class Graph:
             current_vertex = previous_vertices[current_vertex]
         if path:
             path.appendleft(current_vertex)
-            distance_between_nodes = 0
-        for index in range(1, len(path)):
-            for thing in self.edges:
-                if thing.start == path[index - 1] and thing.end == path[index]:
-                    distance_between_nodes += thing.cost
-        return distance_between_nodes
+        logger.debug("path to destination is {}".format(path))
+        # distance_between_nodes = 0
+        # for index in range(1, len(path)):
+        #     for thing in self.edges:
+        #         if thing.start == path[index - 1] and thing.end == path[index]:
+        #             distance_between_nodes += thing.cost
+        # return distance_between_nodes
         # return path, distances[dest]
-        # return distances[dest]
-
-
-if __name__ == "__main__":
-    graph = Graph(
-        [
-            ("a", "b", 7),
-            ("a", "c", 9),
-            ("a", "f", 14),
-            ("b", "c", 10),
-            ("b", "d", 15),
-            ("c", "d", 11),
-            ("c", "f", 2),
-            ("d", "e", 6),
-            ("e", "f", 9),
-        ]
-    )
-
-    print(graph.dijkstra("a", "e"))
+        return distances[dest]

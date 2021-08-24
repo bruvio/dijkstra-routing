@@ -23,11 +23,10 @@ def main(
     node1,
     node2,
 ):
-    logger.info("creating Graph from {}".format(path))
 
     if os.path.exists(path):
         logger.debug("path exists")
-        logger.info("building Graph")
+        logger.info("creating Graph from {}".format(path))
         logger.debug("reading number of nodes in current Graph")
 
         with open(path) as f:
