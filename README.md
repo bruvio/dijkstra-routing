@@ -24,6 +24,42 @@ The program takes a graph using this representation as input, and computes the s
 2709
 ```
 
+### 1. Initial Setup
+
+**Quick Setup** (prereq: `git, python3.8` )
+
+```bash
+unzip xxxx.zip
+python -m venv .env3.8
+
+```
+
+#### Project Structure:
+
+Mono-repo style
+
+```
+├── pytest.ini
+├── README.md
+├── requirements-dev.txt
+├── requirements.txt
+├── run.sh
+├── shortestpath.py
+├── test-graph.dat
+├── tests
+│   ├── conftest.py
+│   ├── __init__.py
+│   └── test_dijkstra.py
+└── utils.py
+
+```
+
+- `/tests/`: tests for basic operations on the app.
+- `utils.py`: help functions
+- `test-graph.dat`: input dataset
+- `shortestpath.py`: main file
+- `run.sh`: script to run the program
+
 ## The algorithm
 
 1.  Mark all nodes unvisited and store them.
