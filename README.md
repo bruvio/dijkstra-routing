@@ -54,7 +54,7 @@ Mono-repo style
 
 ```
 
-- `/tests/`: tests for basic operations on the app.
+- `/tests/`: tests for basic operations on the algorithm.
 - `utils.py`: help functions
 - `test-graph.dat`: input dataset
 - `shortestpath.py`: main file
@@ -76,3 +76,10 @@ I use namedtuple for storing edge data and deque.
 After reading the file I create the Graph adding vertices andproperties: adding, removing and finding neighbors functionalities.
 
 I also created a simple test with a little example to see if the algorithm is correct.
+
+
+## Running the program
+
+```
+./run.sh test-graph.dat 876500321 1524235806
+```
