@@ -2,7 +2,7 @@ import logging
 from collections import deque, namedtuple
 
 logger = logging.getLogger(__name__)
-# we'll use infinity as a default distance to nodes.
+# use infinity as a default distance to nodes.
 inf = float("inf")
 Edge = namedtuple("Edge", "start, end, cost")
 
@@ -13,7 +13,7 @@ def make_edge(start, end, cost=1):
 
 class Graph:
     def __init__(self, edges):
-        # let's check that the data is right
+        # check that the data is right
         wrong_edges = [i for i in edges if len(i) not in [2, 3]]
         if wrong_edges:
             raise ValueError("Wrong edges data: {}".format(wrong_edges))
@@ -48,23 +48,23 @@ class Graph:
         if both_ends:
             self.edges.append(Edge(start=n2, end=n1, cost=cost))
 
-    @property
-    def neighbours(self):
-        neighbours = {vertex: set() for vertex in self.vertices}
-        for edge in self.edges:
-            neighbours[edge.start].add((edge.end, edge.cost))
-
-        return neighbours
-
-    # use the following if the graph is undirected
     # @property
     # def neighbours(self):
     #     neighbours = {vertex: set() for vertex in self.vertices}
     #     for edge in self.edges:
     #         neighbours[edge.start].add((edge.end, edge.cost))
-    #         neighbours[edge.end].add((edge.start, edge.cost))
 
     #     return neighbours
+
+    # use the following if the graph is undirected / bidirectional
+    @property
+    def neighbours(self):
+        neighbours = {vertex: set() for vertex in self.vertices}
+        for edge in self.edges:
+            neighbours[edge.start].add((edge.end, edge.cost))
+            neighbours[edge.end].add((edge.start, edge.cost))
+
+        return neighbours
 
     def dijkstra(self, source, dest):
         assert source in self.vertices, "Such source node doesn't exist"
