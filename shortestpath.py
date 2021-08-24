@@ -49,7 +49,7 @@ def main(
         distance = graph.dijkstra(node1, node2)
         logger.debug("Elapsed Time: %s" % (time.time() - start))
 
-        logger.debug(
+        logger.info(
             "distance between node {} and node {} is \n {}".format(
                 node1, node2, distance
             )
