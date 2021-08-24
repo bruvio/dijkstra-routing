@@ -68,7 +68,6 @@ if __name__ == "__main__":
         "--path",
         type=str,
         help="path to Graph file",
-        default="citymapper-coding-test-graph.dat",
         required=True,
     )
     parser.add_argument("-n1", "--node1", type=str, help="start node", required=True)
@@ -80,7 +79,7 @@ if __name__ == "__main__":
         "--debug",
         type=int,
         help="Debug level. 0: Error, 1: Warning, 2: Info, 3: Debug, 4: Debug Plus",
-        default=2,
+        default=3,
     )
     args = parser.parse_args(sys.argv[1:])
 
@@ -98,8 +97,7 @@ if __name__ == "__main__":
     logging.addLevelName(5, "DEBUG_PLUS")
 
     logger = logging.getLogger(__name__)
-
-    logger.setLevel(logging.DEBUG)
+    logging.basicConfig(level=debug_map[args.debug])
     main(
         args.path,
         args.node1,
