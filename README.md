@@ -79,7 +79,29 @@ I also created a simple test with a little example to see if the algorithm is co
 
 
 ## Running the program
+to run the code with basic option just run
 
 ```
+./run.sh pathtograph start destination
+```
+for example
+```
 ./run.sh test-graph.dat 876500321 1524235806
+```
+
+if you want to run the code with increased debugging options (more messages displayed to screen), try:
+
+```
+./run.sh test-graph.dat 876500321 1524235806 3
+```
+
+where the last number is a debug code according to the following debug map:
+```
+    debug_map = {
+        0: logging.ERROR,
+        1: logging.WARNING,
+        2: logging.INFO,
+        3: logging.DEBUG,
+        4: 5,
+    }
 ```
