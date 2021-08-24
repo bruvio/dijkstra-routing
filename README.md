@@ -78,6 +78,22 @@ After reading the file I create the Graph adding vertices andproperties: adding,
 I also created a simple test with a little example to see if the algorithm is correct.
 
 
+## running test
+
+to run test I chose to use pytest
+
+so first
+
+```
+pip install -r requirements.txt
+```
+then run
+```
+pytest tests
+```
+
+
+
 ## Running the program
 to run the code with basic option just run
 
@@ -86,13 +102,13 @@ to run the code with basic option just run
 ```
 for example
 ```
-./run.sh test-graph.dat 876500321 1524235806
+./run.sh test-graph.dat 36327783 36327785
 ```
 
 if you want to run the code with increased debugging options (more messages displayed to screen), try:
 
 ```
-./run.sh test-graph.dat 876500321 1524235806 3
+./run.sh test-graph.dat 36327783 36327785 3
 ```
 
 where the last number is a debug code according to the following debug map:
@@ -105,6 +121,10 @@ where the last number is a debug code according to the following debug map:
         4: 5,
     }
 ```
+
+
+
+
 ## further developments
 
 code performances are bad when dealing with big graphs.
