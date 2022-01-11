@@ -25,11 +25,7 @@ class Graph:
         return set(sum(([edge.start, edge.end] for edge in self.edges), []))
 
     def get_node_pairs(self, n1, n2, both_ends=True):
-        if both_ends:
-            node_pairs = [[n1, n2], [n2, n1]]
-        else:
-            node_pairs = [[n1, n2]]
-        return node_pairs
+        return [[n1, n2], [n2, n1]] if both_ends else [[n1, n2]]
 
     def remove_edge(self, n1, n2, both_ends=True):
         node_pairs = self.get_node_pairs(n1, n2, both_ends)
@@ -209,10 +205,7 @@ def remap_nodes(vertices, neighbours):
     Returns:
         [type]: [adjacency list and hashtable that remaps the nodes]
     """
-    hashmap = dict()
-    for i in range(0, len(vertices)):
-        hashmap[vertices[i]] = i
-
+    hashmap = {vertices[i]: i for i in range(len(vertices))}
     edges = []
 
     for vertex in neighbours.keys():
